@@ -1,0 +1,22 @@
+{% extends "manager.html" %}
+
+{% block manager_content %}
+
+
+ <div class="structure_items">
+        <form method="post">
+            <h1>新增班級資料</h1>
+            <ul class="structure_items_ul">
+                {{ classform.hidden_tag()}}
+                <li><span class="structure_items_ul_label">{{ classform.class_name.label}}</span></li>
+                <li>{{ classform.class_name(value=class_.class_name)}}</li>
+                <li><span class="structure_items_ul_label">{{ classform.teacher_name1.label}}</span></li>
+                <li>{{ classform.teacher_name1}}</li>
+                <li><span class="structure_items_ul_label">{{ classform.teacher_name2.label}}</span></li>
+                <li>{{ classform.teacher_name2}}</li>
+                <li>{{ classform.submit }}</li>
+            </ul>
+        </form>
+
+    </div>
+{% endblock %}

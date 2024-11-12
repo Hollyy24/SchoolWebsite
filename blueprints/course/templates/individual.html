@@ -1,0 +1,55 @@
+{% extends "course.html" %}
+
+{% block indiviual%}
+<div class="course_content">
+    {% if posts %}
+    {% for post in posts %}
+    <div class="course_items">
+        <h1><span class="content_title">{{post.title }}</span></h1>
+        <div class="content_date">發表日期：{{post.posttime}}</div>
+
+        <p class="content_p">{{ post.context |safe}}</p>
+        <div class="content_img">
+            <img src="{{ url_for('static', filename=post.picture_path1) }}" alt="上傳圖片">
+            <img src="{{ url_for('static', filename=post.picture_path2) }}" alt="上傳圖片">
+            <img src="{{ url_for('static', filename=post.picture_path3) }}" alt="上傳圖片">
+        </div>
+        <a class="article_edit_a" href="{{url_for('course.course_edit',post_id=post.id)}}">修改</a>
+        <a class="article_edit_a" href="{{url_for('course.course_delete',post_id=post.id)}}">刪除</a>
+
+        {% endfor %}
+
+        {% else %}
+        <h1><span class="content_title">尚無貼文</span></h1>
+
+        {% endif %}
+
+    </div>
+
+
+</div>
+<div class="pagination">
+    <div>
+        {% if current_page > 1 %}
+        <a class="pagination_a" href="{{ url_for('course.index', page=current_page- 1) }}">上一頁</a>
+
+        {% endif %}
+
+        {% for page_num in range(1, total_pages + 1) %}
+        {% if page_num == current_page %}
+        <strong class="pagination_a_number">{{ page_num }}</strong>  <!-- 當前頁加粗 -->
+        {% else %}
+        <a class="pagination_a_number" href="{{ url_for('course.index', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {% if current_page < total_pages %}
+        <a class="pagination_a" href="{{ url_for('course.index', page=current_page + 1) }}">下一頁</a>
+
+        {% endif %}
+    </div>
+    <div>
+        <span>第 {{ current_page }} 頁 / 共 {{ total_pages }} 頁</span>
+    </div>
+</div>
+{% endblock %}

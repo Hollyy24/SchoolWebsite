@@ -1,0 +1,37 @@
+{% extends "manager.html" %}
+
+{% block manager_content %}
+
+<div class="structure_manager">
+    <h1>行政工作</h1>
+    <ul>
+        {% for i in  range(total) %}
+        <li>
+            <ul class="structure_manager_ul">
+                <li>{{ structuredisplay[i].team_name }}</li><hr>
+                <li>{{ structuredisplay[i].teacher_name}}</li><hr>
+                <li><a href="{{ url_for('register.team_delete',teamname=structuredisplay[i].team_name)}}">刪除</a>
+                    <a href="{{ url_for('register.team_edit',teamname=structuredisplay[i].team_name)}}">修改</a>
+                </li>
+            </ul>
+
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="structure_items">
+        <form method="post">
+            <h1>新增資料</h1>
+            <ul class="structure_items_ul">
+                {{ schoolstructure.hidden_tag()}}
+                <li ><span class="structure_items_ul_label">{{ schoolstructure.team_name.label}}</span></li>
+                <li>{{ schoolstructure.team_name}}</li>
+                <li><span class="structure_items_ul_label">{{ schoolstructure.teacher_name.label}}</li>
+                <li>{{ schoolstructure.teacher_name}}</li>
+                <li>{{ schoolstructure.submit }}</li>
+            </ul>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

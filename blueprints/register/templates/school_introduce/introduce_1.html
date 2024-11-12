@@ -1,0 +1,17 @@
+{% extends "manager.html" %}
+
+{% block manager_content %}
+
+
+<div class="school_manager">
+    <form method="post">
+        {{ schoolform.hidden_tag()}}
+        <div><h2>標題</h2>{{ schoolform.title}}</div>
+        <div><h2>緣起內容</h2>{{ schoolform.content}}</div>
+        <div>{{ schoolform.submit}}</div>
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='content')}}
+    </form>
+
+</div>
+{% endblock %}

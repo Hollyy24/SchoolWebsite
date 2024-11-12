@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %} 圖書資料{% endblock%}
+
+{% block content%}
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>
+        {{ message }}
+    </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+{% block library_content %}
+
+<div class="library_container">
+    <h1 class="library_title"> 館藏搜尋 </h1>
+    <div class="library_search">
+        <form method="post">
+            <ul class="library_search_ul">
+                {{ searchbook.hidden_tag()}}
+                <li>{{ searchbook.ways.label }} : {{ searchbook.ways}}</li>
+                <li>{{ searchbook.content.label }} : {{ searchbook.content}}</li>
+                <li>{{ searchbook.submit }}</li>
+            </ul>
+        </form>
+    </div>
+    <h1 class="library_title"> 所有館藏</h1>
+    <a class="library_a" href="{{ url_for('library.index')}}"> 全部館藏</a>
+    <div class="library_result">
+        {% if books %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col  result_items">
+                    編號
+                </div>
+                <div class="col  result_items">
+                    書名
+                </div>
+                <div class="col  result_items">
+                    作者
+                </div>
+                <div class="col  result_items">
+
+                    ＩＳＢＮ碼
+                </div>
+                {% if current_user.is_authenticated %}
+                <div class="col  result_items">
+                    備註
+                </div>
+                {% endif %}
+            </div>
+            {% for book in books %}
+            <div class="row library_result">
+                <div class="col">
+                    {{ book.id }}
+                </div>
+                <div class="col">
+                    {{ book.book_title }}
+                </div>
+                <div class="col">
+                    {{ book.author }}
+                </div>
+                <div class="col ">
+                    {{ book.ISBN_number }}
+                </div>
+                {% if current_user.is_authenticated %}
+                <div class="col ">
+                    <a class="library_a" href="{{ url_for('library.delete',book_id=book.id)}}">刪除</a>
+                    <a class="library_a" href="{{ url_for('library.edit',book_id=book.id)}}">修改</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+        </div>
+        {% else %}
+        查無書籍
+        {% endif %}
+    </div>
+</div>
+ <div class="pagination">
+        <div>
+            {% if current_page > 1 %}
+            <a class="pagination_a" href="{{ url_for('library.index', page=current_page- 1) }}"> < </a>
+
+            {% endif %}
+
+            {% for page_num in range(1, total_pages + 1) %}
+            {% if page_num == current_page %}
+            <strong class="pagination_a_number">{{ page_num }}</strong>  <!-- 當前頁加粗 -->
+            {% else %}
+            <a class="pagination_a_number" href="{{ url_for('library.index', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+            {% endfor %}
+
+            {% if current_page < total_pages %}
+            <a class="pagination_a" href="{{ url_for('library.index', page=current_page + 1) }}"> > </a>
+
+            {% endif %}
+        </div>
+        <div>
+            <span>第 {{ current_page }} 頁 / 共 {{ total_pages }} 頁</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% endblock %} 

@@ -1,0 +1,32 @@
+{% extends "manager.html" %}
+
+{% block manager_content %}
+
+<div class="course_form">
+    <form method="POST" enctype="multipart/form-data">
+        <ul>
+            <li><h1>新增文章</h1></li>
+            {{ courseform.hidden_tag()}}
+            <li>{{ courseform.class_.label }}<br>{{ courseform.class_ }}</li>
+            <li>{{ courseform.title.label }}<br>{{ courseform.title }}</li>
+            <li>{{ courseform.context.label }}<br>{{ courseform.context| safe }}</li>
+        </ul>
+        <ul>
+            <li><h1>上傳照片</h1></li>
+            <li>{{ courseform.picture_path1.label }}{{ courseform.picture_path1 }}</li>
+            <li>{{ courseform.picture_path2.label }}{{ courseform.picture_path2 }}</li>
+            <li>{{ courseform.picture_path3.label }}{{ courseform.picture_path3 }}</li>
+        </ul>
+        {{ courseform.submit }}
+        {{ ckeditor.load()}}
+        {{ ckeditor.config(name="context")}}
+    </form>
+
+
+</div>
+<div>
+
+
+</div>
+
+{% endblock %}

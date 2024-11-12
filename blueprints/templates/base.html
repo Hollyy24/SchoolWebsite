@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+          crossorigin="anonymous">
+    <title>{% block title %}HELLO{% endblock%}</title>
+</head>
+<body>
+<div class="content">
+    <div class="title">
+        <img class="title_image" src="{{ url_for('static', filename='title_image.png') }}"></div>
+    <ul class="title_nav">
+        <li class="nav_li"><a class="nav_li_a" href="{{ url_for( 'main.index') }}"> 學校首頁 </a></li>
+        <li class="nav_li"><a class="nav_li_a" href="{{ url_for( 'introduce.index') }}"> 團隊介紹 </a></li>
+        <li class="nav_li"><a class="nav_li_a" href="https://drive.google.com/drive/"> 相簿花絮 </a></li>
+        <li class="nav_li"><a class="nav_li_a" href="{{ url_for( 'course.index') }}"> 課程花絮 </a></li>
+        <li class="nav_li"><a class="nav_li_a" href="{{ url_for( 'library.index') }}"> 圖書查詢 </a></li>
+        {% if current_user.is_authenticated %}
+        <li class="nav_li"><a class="nav_li_a" href="{{ url_for( 'register.manager') }}"> 資料管理 </a></li>
+        <li class="nav_li"><a class="nav_li_a" href="{{ url_for( 'register.logout') }}"> 系統登出 </a></li>
+        {% else %}
+        <li class="nav_li"><a class="nav_li_a" href="{{ url_for( 'register.index') }}"> 系統登入 </a></li>
+        {% endif%}
+    </ul>
+
+
+    {% block content%}
+    {% endblock %}
+
+</div>
+
+
+<ul class="footer_layout ">
+    <li class="footer_items">地址：xxx-ood</li>
+    <li class="footer_items">電話：000-ffff0fff</li>
+</ul>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

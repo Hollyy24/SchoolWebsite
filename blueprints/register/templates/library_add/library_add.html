@@ -1,0 +1,24 @@
+{% extends "manager.html" %}
+
+{% block manager_content %}
+<div class="library_items">
+    <form method="post">
+        <h1>新增書籍</h1>
+        <ul class="library_items_ul">
+            {{ addbook.hidden_tag()}}
+            <li><span class="library_items_ul_label">{{ addbook.id.label}}</span></li>
+            <li>系統自動帶入編號，請勿更改</li>
+            <li>{{ addbook.id(readonly=True)}}</li>
+            <li><span class="library_items_ul_label">{{addbook.book_title.label}}</span></li>
+            <li>{{ addbook.book_title}}</li>
+            <li><span class="library_items_ul_label">{{ addbook.author.label}}</span></li>
+            <li>{{ addbook.author}}</li>
+            <li><span class="library_items_ul_label">{{ addbook.ISBN_number.label}}</span></li>
+            <li>{{ addbook.ISBN_number}}</li>
+            <li>{{ addbook.submit }}</li>
+        </ul>
+    </form>
+
+</div>
+
+{% endblock %}

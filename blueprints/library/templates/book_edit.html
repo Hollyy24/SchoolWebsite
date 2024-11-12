@@ -1,0 +1,24 @@
+{% extends "library.html" %}
+
+{% block library_content %}
+<div class="library_items">
+    <form method="post">
+        <h1>修改書籍資料</h1>
+        <ul class="library_items_ul">
+            {{ bookform.hidden_tag()}}
+            <li><span class="library_items_ul_label">{{ bookform.id.label}}</span></li>
+            <li>系統自動帶入編號，請勿更改</li>
+            <li>{{ bookform.id(readonly=True)}}</li>
+            <li><span class="library_items_ul_label">{{bookform.book_title.label}}</span></li>
+            <li>{{ bookform.book_title}}</li>
+            <li><span class="library_items_ul_label">{{ bookform.author.label}}</span></li>
+            <li>{{ bookform.author}}</li>
+            <li><span class="library_items_ul_label">{{ bookform.ISBN_number.label}}</span></li>
+            <li>{{ bookform.ISBN_number}}</li>
+            <li>{{ bookform.submit }}</li>
+        </ul>
+    </form>
+
+</div>
+
+{% endblock %}

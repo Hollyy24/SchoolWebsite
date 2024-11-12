@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}管理資料{% endblock%}
+
+{% block content%}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>
+        {{ message }}
+    </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+</div>
+
+<div class="manage_layout">
+    <div class="manage_category">
+        <ul class="manage_category_list">
+            <li>編輯項目</li>
+            <li><a href="{{ url_for('register.manager')}}">編輯-帳號管理</a></li>
+            <li><a href="{{ url_for('register.introduce_1')}}">編輯-學校介紹</a></li>
+            <li><a href="{{ url_for('register.introduce_2')}}">編輯-行政團隊</a></li>
+            <li><a href="{{ url_for('register.introduce_3')}}">編輯-班級資料</a></li>
+            <li><a href="{{ url_for('register.librarybook_add')}}">新增-館藏資料</a></li>
+            <li><a href="{{ url_for('register.course_add')}}">新增-課程活動</a></li>
+        </ul>
+    </div>
+    <div class="manage_content">
+        {% block manager_content %}
+        <div class="teacher_manager_form">
+            <div class="add_manager">
+                <h2>新增使用者</h2>
+                <form method="post">
+                    <ul class="add_manager_ul">
+                        {{ userform.hidden_tag()}}
+                        <li><span class="add_manager_label">{{ userform.username.label}}</span></li>
+                        <li>{{ userform.username}}</li>
+                        <li><span class="add_manager_label">{{ userform.useraccount.label}}</span></li>
+                        <li>{{ userform.useraccount}}</li>
+                        <li><span class="add_manager_label">{{ userform.userpassword.label}}</span></li>
+                        <li>{{ userform.userpassword}}</li>
+                        <li>{{ userform.submit}}</li>
+                    </ul>
+                </form>
+            </div>
+            <div class="show_managers">
+                <h2>所有使用者</h2>
+                <ul class="show_managers_items">
+                    {% for user in users %}
+                    <li class="show_managers_items_li">
+                        <ul>
+                            <li class="show_managers_items_label">教師</li>
+                            <li>{{ user.user_name}}</li>
+                            <li class="show_managers_items_label">帳號</li>
+                            <li>{{ user.user_account}}</li>
+                            <li>
+                                <a href="{{url_for('register.account_delete',user_id=user.id)}}">刪除</a>
+                                <a href="{{url_for('register.account_edit',user_id=user.id)}}">修改 </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endfor%}
+
+                </ul>
+
+
+            </div>
+
+        </div>
+        {% endblock%}
+
+    </div>
+</div>
+
+
+{% endblock %}

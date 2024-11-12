@@ -1,0 +1,19 @@
+{% extends "manager.html" %}
+
+{% block manager_content %}
+
+  <div class="structure_items">
+        <form method="post">
+            <h1>修改資料</h1>
+            <ul class="structure_items_ul">
+                {{ teamform.hidden_tag()}}
+                <li ><span class="structure_items_ul_label">{{ teamform.team_name.label}}</span></li>
+                <li>{{ teamform.team_name(value=team.team_name)}}</li>
+                <li><span class="structure_items_ul_label">{{ teamform.teacher_name.label}}</li>
+                <li>{{ teamform.teacher_name}}</li>
+                <li>{{ teamform.submit }}</li>
+            </ul>
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %} 團隊介紹 {% endblock%}
+
+{% block content%}
+
+<div class="introduce_container">
+
+
+    <div class="introduce_school">
+        <h1><span class="introduce_title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            學校理念
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg></span>
+        </h1>
+        <div>
+            {{ schoolintroduce.title | safe}}
+            {{ schoolintroduce.content|safe }}
+        </div>
+    </div>
+
+
+    <div class="introduce_teacher">
+        <h1><span class="introduce_title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            行政工作
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg></span>
+        </h1>
+        <ul class="introduce_teacher_items">
+            {% for structure in structures %}
+            <li>
+                {{ structure.team_name }} 組<br>
+                <hr>
+                {{ structure.teacher_name }}<br>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="introduce_class">
+        <h1><span class="introduce_title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+             班級介紹
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg> </span>
+        </h1>
+        <ul>
+            {% for classdata in classes %}
+            <li>
+                <ul class="introduce_class_items">
+                    <li>{{ classdata.class_name }} </li><hr>
+                    <li>{{ classdata.class_teacher1 }}</li>
+                    <li>{{ classdata.class_teacher2 }}</li>
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+{% endblock %}

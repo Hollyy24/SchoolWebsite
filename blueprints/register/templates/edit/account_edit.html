@@ -1,0 +1,24 @@
+{% extends "manager.html" %}
+
+{% block manager_content %}
+
+
+<div class="school_manager">
+      <div class="teacher_manager_form">
+            <div class="add_manager">
+                <h2>修改使用者資料</h2>
+                <form method="post">
+                    <ul class="add_manager_ul">
+                        {{ userform.hidden_tag()}}
+                        <li><span class="add_manager_label">{{ userform.username.label}}</span></li>
+                        <li>{{ userform.username}}</li>
+                        <li><span class="add_manager_label">{{ userform.useraccount.label}}</span></li>
+                        <li>{{ userform.useraccount}}</li>
+                        <li><span class="add_manager_label">{{ userform.userpassword.label}}</span></li>
+                        <li>{{ userform.userpassword}}</li>
+                        <li>{{ userform.submit}}</li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+{% endblock %}

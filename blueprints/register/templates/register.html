@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}登入系統{% endblock%}
+
+{% block content%}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>
+        {{ message }}
+    </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div>
+    <form class="register_form" method="post">
+        {{ userform.hidden_tag()}}
+        <h2>登入系統</h2>
+        <div>
+            {{ userform.useraccount.label}} : {{ userform.useraccount}}<br>
+        </div>
+        <div>
+            {{ userform.userpassword.label}} : {{ userform.userpassword}}<br>
+        </div>
+        <div>
+            {{ userform.submit}}
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

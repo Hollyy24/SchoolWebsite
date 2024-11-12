@@ -1,0 +1,44 @@
+{% extends "manager.html" %}
+
+{% block manager_content %}
+
+<div class="structure_manager">
+
+    <h1>班級資料</h1>
+    <ul>
+        {% for item in classdisplay %}
+        <li>
+            <ul class="structure_manager_ul">
+                <li>{{ item.class_name }}</li>
+                <hr>
+                <li>{{ item.class_teacher1}}</li>
+                <hr>
+                <li>{{ item.class_teacher2}}</li>
+                <hr>
+                <li>
+                    <a href="{{ url_for('register.class_delete',class_name=item.class_name)}}">刪除</a>
+                    <a href="{{ url_for('register.class_edit',class_name=item.class_name)}}">修改</a></li>
+            </ul>
+
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="structure_items">
+        <form method="post">
+            <h1>新增班級資料</h1>
+            <ul class="structure_items_ul">
+                {{ classdata.hidden_tag()}}
+                <li><span class="structure_items_ul_label">{{ classdata.class_name.label}}</span></li>
+                <li>{{ classdata.class_name}}</li>
+                <li><span class="structure_items_ul_label">{{ classdata.teacher_name1.label}}</span></li>
+                <li>{{ classdata.teacher_name1}}</li>
+                <li><span class="structure_items_ul_label">{{ classdata.teacher_name2.label}}</span></li>
+                <li>{{ classdata.teacher_name2}}</li>
+                <li>{{ classdata.submit }}</li>
+            </ul>
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
